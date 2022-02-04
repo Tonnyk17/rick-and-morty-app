@@ -11,7 +11,8 @@ export const CardText = ({content}) => {
 }
 
 const CardTextStyle = styled.p`
+    text-align: center;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 24px;
     color: ${colors.cyan};
 `

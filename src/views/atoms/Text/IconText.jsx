@@ -16,5 +16,5 @@ const IconTextStyles = styled.h3`
     font-family: 'Patrick Hand SC', cursive;
     color: ${colors.main};
     text-shadow: 0px 0px 15px ${colors.green};
-    margin: 8px 0;
+    margin: 8px;
 `;

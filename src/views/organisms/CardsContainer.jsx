@@ -32,7 +32,7 @@ export const CardsContainer = () => {
              {
                  cards.map(item => (
                      <Card>
-                         <CardImageContainer/>
+                         <CardImageContainer />
                      </Card>
                  ))
              }

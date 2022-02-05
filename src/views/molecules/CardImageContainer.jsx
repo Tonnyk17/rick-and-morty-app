@@ -8,7 +8,7 @@ export const CardImageContainer = ({image, content}) => {
     return(
         <>
            <CardImageContainerStyle>
-               <CardImage image={image}/> 
+               <CardImage image={image} isButton={true}/> 
                <CardText content={content}/>
            </CardImageContainerStyle>
         </>

@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-export const CardImage = ({image}) => {
+export const CardImage = ({image, isButton}) => {
     return(
         <>
-            <CardImageStyle src={image}/>
+            <CardImageStyle src={image} isButton={isButton}/>
         </>
     )
 }
@@ -12,8 +12,8 @@ export const CardImage = ({image}) => {
 const CardImageStyle = styled.img`
     width:100%;
     border-radius: 15px;
-    position:absolute;
+    position:${props => props.isButton ? 'absolute' : 'initial'};
     &:hover{
-        opacity:0.2;
+        opacity:${props => props.isButton ? 0.2 : 1};
     }
 `

@@ -12,7 +12,7 @@ export const Title = ({content}) => {
 
 const TitleStyles = styled.h1`
     text-shadow: 0px 0px 15px ${colors.green};
-    font-size: 54px;
+    font-size: 52px;
     color: ${colors.main};
     text-align: center;
     font-family: 'Patrick Hand SC', cursive;

@@ -4,12 +4,22 @@ import { CardImage } from "../atoms/CardImage";
 import { InfoContainer } from "../molecules/InfoContainer";
 import { colors } from "../atoms/Variables/color";
 
-export const InfoCard = () => {
+export const InfoCard = ({image}) => {
+    const info = {
+        name:'Hella',
+        air_date:'10',
+        episode: 'kop'
+    }
     return(
         <>
             <InfoCardStyle>
-                <CardImage image={'https://rickandmortyapi.com/api/character/avatar/2.jpeg'}/>
-                <InfoContainer/>
+                {
+                    image ? 
+                    <CardImage image={'https://rickandmortyapi.com/api/character/avatar/2.jpeg'}/>
+                    :
+                    null
+                }
+                <InfoContainer type={'episode'} data={info}/>
             </InfoCardStyle>
         </>
     )

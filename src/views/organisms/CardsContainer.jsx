@@ -43,7 +43,7 @@ export const CardsContainer = () => {
 
 const CardsContainerStyles = styled.div`
     width:90%;
-    margin: 30px auto;
+    margin: 70px auto;
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(auto-fill, 200px);

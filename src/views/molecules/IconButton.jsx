@@ -6,11 +6,10 @@ import { IconText } from "../atoms/Text/IconText";
 export const IconButton = ({image, content, onClick}) => {
     return(
         <>
-            <IconButtonStyles>
+            <IconButtonStyles  onClick={onClick}>
                 <Icon image={image}/>
                 <IconText 
                     content={content} 
-                    onClick={onClick}
                 />
             </IconButtonStyles>
         </>

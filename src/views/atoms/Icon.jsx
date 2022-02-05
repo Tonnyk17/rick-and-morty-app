@@ -26,9 +26,9 @@ const rotate = keyframes`
 `;
 
 const IconStyles = styled.img`
-    width: 70px;
+    width: 60px;
     animation: ${rotate} 1s infinite;
     @media screen and (min-width: 700px){
-        width: 100px;
+        width: 90px;
     }
 `;

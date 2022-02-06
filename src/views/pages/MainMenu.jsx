@@ -7,14 +7,12 @@ import { CardsContainer } from "../organisms/CardsContainer";
 import { IconsContainer } from "../molecules/IconsContainer";
 import { useDispatch } from "react-redux";
 import { getCharacter } from "../../redux/characterDucks";
-import { useSelector } from "react-redux";
 import { getEpisode } from "../../redux/episodeDucks";
 import { ButtonsContainer } from "../molecules/ButtonsContainer";
 
 export const MainMenu = () => {
     const {type} = useParams();
     const dispatch = useDispatch();
-    const selector = useSelector(store => store)
  
 
     useEffect(() => {
@@ -25,7 +23,7 @@ export const MainMenu = () => {
             dispatch(getEpisode())   
        }
     },[type])
-    console.log(selector)
+
     return(
         <>
             <MainMenuStyle>

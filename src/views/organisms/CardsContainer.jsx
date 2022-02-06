@@ -6,26 +6,9 @@ import { CardImageContainer } from "../molecules/CardImageContainer";
 export const CardsContainer = () => {
     const cards = [
         {
-        item:1,
-        },
-        {
-            item:2
-        },
-        {
-            item:2
-        },
-        {
-            item:2
-        },{
-            item:2
-        },{
-            item:2
-        },{
-            item:2
-        },{
-            item:2
-        },
-    ];
+            type: 1
+        }
+    ]
     return(
         <>
          <CardsContainerStyles>

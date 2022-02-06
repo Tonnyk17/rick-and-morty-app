@@ -3,24 +3,42 @@ import styled from "styled-components";
 import { CardImage } from "../atoms/CardImage";
 import { InfoContainer } from "../molecules/InfoContainer";
 import { colors } from "../atoms/Variables/color";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
-export const InfoCard = ({image}) => {
-    const info = {
-        name:'Hella',
-        air_date:'10',
-        episode: 'kop'
-    }
+export const InfoCard = ({type}) => {
+    const selector = useSelector(store => store)
+    const [renderData, setRenderData] = useState();
+    const [isCharacter, setIsCharacter] = useState();
+
+    useEffect(() => {
+        if(type === 'characters'){
+            setRenderData(selector.characters.character)
+            setIsCharacter(true)
+        }
+        else{
+            setRenderData(selector.episodes.episode)
+            setIsCharacter(false)
+        }
+    },[selector, renderData])
+
     return(
         <>
-            <InfoCardStyle>
-                {
-                    image ? 
-                    <CardImage image={'https://rickandmortyapi.com/api/character/avatar/2.jpeg'}/>
-                    :
-                    null
-                }
-                <InfoContainer type={'episode'} data={info}/>
-            </InfoCardStyle>
+            {
+                renderData ? 
+                <InfoCardStyle>
+                    {
+                        isCharacter ? 
+                        <CardImage image={renderData.image}/>
+                        :
+                        null
+                    }
+                    <InfoContainer type={type} data={renderData}/>
+                </InfoCardStyle>
+                :
+                null
+            }
         </>
     )
 }

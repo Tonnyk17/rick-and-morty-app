@@ -7,26 +7,23 @@ export const InfoContainer = ({
     data,
     type
 }) => {
-
     const renderInfoCard = (type) => {
         const infoTypes = [
             {
-                type: 'character',
+                type: 'characters',
                 component: <div>
                                 <InfoText content={`Status: ${data.status}`}/>
-                                <InfoText content={`Specie: ${data.specie}`}/>
+                                <InfoText content={`Specie: ${data.species}`}/>
                                 <InfoText content={`Gender: ${data.gender}`}/>
-                                <InfoText content={`Origin: ${data.origin}`}/>
+                                <InfoText content={`Origin: ${data.origin?.name}`}/>
                             </div>
             },
             {
-                type: 'episode',
+                type: 'episodes',
                 component: <div>
                                 <InfoText content={`Status: ${data.air_date}`}/>
                                 <InfoText content={`Specie: ${data.episode}`}/>
-                            </div>
-                                    
-                                
+                            </div>                 
             }
         ]
         const filterType = infoTypes.find((item) => item.type === type)

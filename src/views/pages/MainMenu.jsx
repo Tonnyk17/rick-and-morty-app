@@ -8,6 +8,7 @@ import { IconsContainer } from "../molecules/IconsContainer";
 import { useDispatch } from "react-redux";
 import { getCharacter } from "../../redux/characterDucks";
 import { useSelector } from "react-redux";
+import { getEpisode } from "../../redux/episodeDucks";
 
 export const MainMenu = () => {
     const {type} = useParams();
@@ -16,16 +17,14 @@ export const MainMenu = () => {
     
 
     useEffect(() => {
-       if(type === 'characters')
-       {
+       if(type === 'characters'){
            dispatch(getCharacter())
        }
-    },[])
+       else{
+            dispatch(getEpisode())
+       }
+    },[type,selector])
 
-    useEffect(() => {
-        console.log(type)
-        console.log(selector,'jj')
-    },[type])
 
     return(
         <>
@@ -33,7 +32,7 @@ export const MainMenu = () => {
                 <Title content={type}/>
                 <IconsContainer infoType={type}/>
                 <Input/>
-                <CardsContainer />
+                <CardsContainer type={type}/>
             </MainMenuStyle>
         </>
     )

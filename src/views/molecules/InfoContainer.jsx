@@ -22,7 +22,7 @@ export const InfoContainer = ({
                 type: 'episodes',
                 component: <div>
                                 <InfoText content={`Status: ${data.air_date}`}/>
-                                <InfoText content={`Specie: ${data.episode}`}/>
+                                <InfoText content={`Episode: ${data.episode}`}/>
                             </div>                 
             }
         ]

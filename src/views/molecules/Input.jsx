@@ -3,14 +3,32 @@ import styled from "styled-components";
 import { colors } from "../atoms/Variables/color";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { searchCharacter } from "../../redux/characterDucks";
+import { searchEpisode } from "../../redux/episodeDucks";
 
-export const Input = () => {
+export const Input = ({type}) => {
+    const dispatch = useDispatch()
+    const handleChange = (e) => {
+        if(type === "characters"){
+            dispatch(searchCharacter(e.target.value))
+        }
+        else if(type === "episodes"){
+            dispatch(searchEpisode(e.target.value))
+        }
+    }
     return(
         <>
            <InputContainer>
                 <Form>
                         <Label htmlFor="input"><FontAwesomeIcon icon={faSearch}/></Label>
-                        <InputStyle type="text" placeholder="Search..." name="input" id="input"/>
+                        <InputStyle 
+                            type="text" 
+                            placeholder="Search..." 
+                            name="input" 
+                            id="input"
+                            onChange={handleChange}
+                        />
                 </Form>
            </InputContainer>
         </>

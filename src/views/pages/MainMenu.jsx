@@ -6,32 +6,33 @@ import { useParams } from "react-router-dom";
 import { CardsContainer } from "../organisms/CardsContainer";
 import { IconsContainer } from "../molecules/IconsContainer";
 import { useDispatch } from "react-redux";
-import { getCharacter } from "../../redux/characterDucks";
+import { getCharacter, getCharacterNextPage } from "../../redux/characterDucks";
 import { useSelector } from "react-redux";
 import { getEpisode } from "../../redux/episodeDucks";
+import { useState } from "react";
 
 export const MainMenu = () => {
     const {type} = useParams();
     const dispatch = useDispatch();
     const selector = useSelector(store => store)
-    
+    const [nextPage, setNextPage] = useState(0)
+    const [prevPage, setPrevPage] = useState(0)
 
     useEffect(() => {
        if(type === 'characters'){
            dispatch(getCharacter())
        }
-       else{
-            dispatch(getEpisode())
+       else if (type === 'episodes'){
+            dispatch(getEpisode())   
        }
-    },[type,selector])
-
+    },[type])
 
     return(
         <>
             <MainMenuStyle>
                 <Title content={type}/>
                 <IconsContainer infoType={type}/>
-                <Input/>
+                <Input type={type}/>
                 <CardsContainer type={type}/>
             </MainMenuStyle>
         </>

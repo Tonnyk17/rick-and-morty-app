@@ -7,6 +7,7 @@ const initialState = {
 }
 const GET_EPISODES = 'GET_EPISODES';
 const GET_EPISODE = 'GET_EPISODE';
+const SEARCH_EPISODE = 'SEARCH_EPISODE';
 
 
 //reducer
@@ -23,6 +24,12 @@ export const episodeReducer = (state = initialState, action) => {
                 ...state,
                 episode: action.payload
             }
+        case SEARCH_EPISODE: 
+            return {
+                ...state,
+                episodes: action.payload.results,
+                episodePage : action.payload.info
+            }
         default: 
             return state
     }
@@ -34,6 +41,7 @@ export const getEpisode = () => async(dispatch, getState) => {
     try {
         const response = await axios.post('https://rickandmortyapi.com/graphql/',{
             query: `query episodes{
+                episodes
                 ${EPISODES_QUERY}
               }`
         });
@@ -59,6 +67,24 @@ export const getEpisodeById = (payload) => async(dispatch, getState) => {
         dispatch({
             type: 'GET_EPISODE',
             payload: response.data.data.episode
+        })
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const searchEpisode= (payload) => async(dispatch, getState) => {
+    try {
+        const response = await axios.post('https://rickandmortyapi.com/graphql/',{
+            query: `query episodes{
+                episodes(filter: { name: "${payload}" })
+                ${EPISODES_QUERY}
+              }`
+        });
+        dispatch({
+            type: 'SEARCH_EPISODE',
+            payload: response.data.data.episodes
         })
         
     } catch (error) {

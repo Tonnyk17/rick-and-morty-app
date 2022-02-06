@@ -1,6 +1,6 @@
 
 export const CHARACTERS_QUERY = `
-    characters{
+    {
         info{
             next
             prev
@@ -26,7 +26,7 @@ export const CHARACTER_QUERY = `
 }`
 
 export const EPISODES_QUERY =  `
-    episodes{
+    {
         info{
         next
         prev

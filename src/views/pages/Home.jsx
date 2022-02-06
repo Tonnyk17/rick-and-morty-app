@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import title from '../../assets/title.png'
 import { IconButton } from "../molecules/IconButton";
 import pickle from '../../assets/pickle-rick.png';
 import episode from '../../assets/cover.jpg'
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { getCharacter } from "../../redux/characterDucks";
-import { useSelector } from "react-redux";
 
 export const Home = () => {
     const history = useNavigate();

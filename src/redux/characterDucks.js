@@ -8,6 +8,7 @@ const initialState = {
 const GET_CHARACTERS = 'GET_CHARACTERS';
 const GET_CHARACTER = 'GET_CHARACTER';
 const GET_NEXT_PAGE = 'GET_NEXT_PAGE';
+const GET_PREV_PAGE = 'GET_PREV_PAGE';
 const SEARCH_CHARACTER = 'SEARCH_CHARACTER';
 
 //reducer
@@ -26,6 +27,12 @@ export const characterReducer = (state = initialState, action) => {
             }
         case GET_NEXT_PAGE:
                 return {
+                    ...state,
+                    characters: action.payload.results,
+                    characterPage : action.payload.info
+                }
+        case GET_PREV_PAGE:
+                 return {
                     ...state,
                     characters: action.payload.results,
                     characterPage : action.payload.info
@@ -90,6 +97,24 @@ export const getCharacterNextPage = (payload) => async(dispatch, getState) => {
         });
         dispatch({
             type: 'GET_NEXT_PAGE',
+            payload: response.data.data.characters
+        })
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getCharacterPrevPage = (payload) => async(dispatch, getState) => {
+    try {
+        const response = await axios.post('https://rickandmortyapi.com/graphql/',{
+            query: `query characters{
+                characters(page:${payload})
+                ${CHARACTERS_QUERY}
+              }`
+        });
+        dispatch({
+            type: 'GET_PREV_PAGE',
             payload: response.data.data.characters
         })
         

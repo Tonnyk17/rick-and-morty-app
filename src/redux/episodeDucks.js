@@ -8,6 +8,8 @@ const initialState = {
 const GET_EPISODES = 'GET_EPISODES';
 const GET_EPISODE = 'GET_EPISODE';
 const SEARCH_EPISODE = 'SEARCH_EPISODE';
+const GET_NEXT_PAGE = 'GET_NEXT_PAGE';
+const GET_PREV_PAGE = 'GET_PREV_PAGE';
 
 
 //reducer
@@ -30,6 +32,18 @@ export const episodeReducer = (state = initialState, action) => {
                 episodes: action.payload.results,
                 episodePage : action.payload.info
             }
+        case GET_NEXT_PAGE:
+            return {
+                ...state,
+                episodes: action.payload.results,
+                episodePage : action.payload.info
+            }
+        case GET_PREV_PAGE:
+            return {
+                ...state,
+                episodes: action.payload.results,
+                episodePage : action.payload.info
+             }
         default: 
             return state
     }
@@ -84,6 +98,42 @@ export const searchEpisode= (payload) => async(dispatch, getState) => {
         });
         dispatch({
             type: 'SEARCH_EPISODE',
+            payload: response.data.data.episodes
+        })
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getEpisodeNextPage = (payload) => async(dispatch, getState) => {
+    try {
+        const response = await axios.post('https://rickandmortyapi.com/graphql/',{
+            query: `query episodes{
+                episodes(page:${payload})
+                ${EPISODES_QUERY}
+              }`
+        });
+        dispatch({
+            type: 'GET_NEXT_PAGE',
+            payload: response.data.data.episodes
+        })
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getEpisodePrevPage = (payload) => async(dispatch, getState) => {
+    try {
+        const response = await axios.post('https://rickandmortyapi.com/graphql/',{
+            query: `query episodes{
+                episodes(page:${payload})
+                ${EPISODES_QUERY}
+              }`
+        });
+        dispatch({
+            type: 'GET_PREV_PAGE',
             payload: response.data.data.episodes
         })
         
